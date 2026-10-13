@@ -1,28 +1,36 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Library System')</title>
 </head>
 <body>
-
     <header>
-        <h1>Library System</h1>
+        <h2>Library System</h2>
+
+        <nav>
+            <a href="{{ route('books.index') }}">Daftar Buku</a>
+            |
+            <a href="{{ route('books.create') }}">Tambah Buku</a>
+        </nav>
     </header>
 
-    <nav>
-        <a href="/dashboard">Dashboard</a> |
-        <a href="/books">Books</a> |
-        <a href="/categories">Categories</a> |
-        <a href="/members">Members</a>
-    </nav>
+    <hr>
 
     <main>
+        @if (session('success'))
+            <p>{{ session('success') }}</p>
+        @endif
+
         @yield('content')
     </main>
 
-    <footer>
-        <p>&copy; 2026 Library System - Abelia Yustika</p>
-    </footer>
+    <hr>
 
+    <footer>
+        <p>Praktikum Pemrograman Web Framework</p>
+    </footer>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -11,14 +12,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/books', function () {
-//     // Return "Daftar Buku";
-//     return view('books.index');
-// });
-
-Route::get('/books', [BookController::class, 'index']);
-
-Route::get('/books/{id}', [BookController::class, 'show']);
+// Route CRUD Buku
+Route::resource('books', BookController::class);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 
