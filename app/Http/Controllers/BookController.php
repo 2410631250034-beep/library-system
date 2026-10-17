@@ -24,7 +24,7 @@ class BookController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
-            'year' => 'required|integer|min:1|max:9999',
+            'year' => 'required|integer|digits:4|min:1|max:9999',
             'stock' => 'required|integer|min:0',
         ]);
 
@@ -49,7 +49,7 @@ class BookController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'author' => 'required|string|max:255',
-            'year' => 'required|integer|min:1|max:9999',
+            'year' => 'required|integer|digits:4|min:1|max:9999',
             'stock' => 'required|integer|min:0',
         ]);
 
