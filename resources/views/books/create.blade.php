@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Tambah Buku')
@@ -37,6 +36,26 @@
                     required
                 >
                 @error('author')
+                    <br>{{ $message }}
+                @enderror
+            </p>
+
+            <p>
+                <label for="category_id">Kategori:</label><br>
+                <select name="category_id" id="category_id">
+                    <option value="">Pilih kategori</option>
+
+                    @foreach ($categories as $category)
+                        <option
+                            value="{{ $category->id }}"
+                            @selected(old('category_id') == $category->id)
+                        >
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                @error('category_id')
                     <br>{{ $message }}
                 @enderror
             </p>

@@ -14,7 +14,7 @@
 
         <label for="title">Judul Buku</label>
         <input id="title" type="text" name="title"
-               value="{{ old('title', $book->title) }}" required>
+            value="{{ old('title', $book->title) }}" required>
         @error('title')
             <p class="error">{{ $message }}</p>
         @enderror
@@ -25,6 +25,25 @@
         @error('author')
             <p class="error">{{ $message }}</p>
         @enderror
+
+        <label for="category_id">Kategori</label>
+        <select name="category_id" id="category_id">
+            <option value="">-- Pilih Kategori --</option>
+
+            @foreach ($categories as $category)
+                <option
+                    value="{{ $category->id }}"
+                    @selected(old('category_id', $book->category_id) == $category->id)
+                >
+                    {{ $category->name }}
+                </option>
+            @endforeach
+        </select>
+
+        @error('category_id')
+            <p class="error">{{ $message }}</p>
+        @enderror
+
 
         <label for="year">Tahun Terbit</label>
         <input id="year" type="number" name="year"

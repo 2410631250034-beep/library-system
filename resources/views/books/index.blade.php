@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Daftar Buku')
@@ -24,6 +23,7 @@
                     <th>No.</th>
                     <th>Judul Buku</th>
                     <th>Penulis</th>
+                    <th>Kategori</th>
                     <th>Tahun</th>
                     <th>Stok</th>
                     <th>Aksi</th>
@@ -36,6 +36,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->author }}</td>
+                        <td>{{ $book->category?->name ?? 'Belum ada kategori' }}</td>
                         <td>{{ $book->year }}</td>
                         <td>{{ $book->stock }}</td>
                         <td>
