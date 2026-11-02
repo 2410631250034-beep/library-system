@@ -138,6 +138,12 @@
             <span class="nav-divider">|</span>
             <a href="{{ route('books.create') }}">Tambah Buku</a>
 
+            <!-- Menu Kelola Pengguna dengan Gate -->
+            @can('manage-users')
+                <span class="nav-divider">|</span>
+                <a href="{{ route('users.index') }}">Kelola Pengguna</a>
+            @endcan
+
             @auth
                 <span class="nav-divider">|</span>
                 <form action="{{ route('logout') }}" method="POST" style="display: inline;">

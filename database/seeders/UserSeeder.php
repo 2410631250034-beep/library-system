@@ -1,43 +1,32 @@
 <?php
-namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+namespace Database\Seeders;
 
-class AuthController extends Controller
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+
+
+class UserSeeder extends Seeder
 {
-    // Menampilkan halaman login
-    public function showLogin()
+    public function run(): void
     {
-        return view('auth.login');
-    }
+        User::updateOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin Perpustakaan',
+                'password' => Hash::make('password123'),
+                'role' => 'admin',
+            ]
+        );
 
-    // Memproses data login
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('books.index'));
-        }
-
-        return back()
-            ->withErrors([
-                'email' => 'Email atau password tidak sesuai.',
-            ])
-            ->onlyInput('email');
-    }
-
-    // Memproses logout
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect()->route('login');
+        User::updateOrCreate(
+            ['email' => 'petugas@example.com'],
+            [
+                'name' => 'Petugas Perpustakaan',
+                'password' => Hash::make('password123'),
+                'role' => 'petugas',
+            ]
+        );
     }
 }

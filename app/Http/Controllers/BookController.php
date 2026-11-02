@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate; // 1. Tambahkan import ini di bagian atas[cite: 10]
 
 class BookController extends Controller
 {
@@ -67,6 +68,9 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
+        // 2. Tambahkan Gate::authorize untuk memeriksa izin sebelum menghapus[cite: 10]
+        Gate::authorize('delete', $book);
+
         $book->delete();
 
         return redirect()->route('books.index')

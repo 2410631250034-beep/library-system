@@ -172,15 +172,19 @@
                                     <a href="{{ route('books.show', $book) }}" class="action-link">Detail</a>
                                     <span style="color: #CBD5E0; margin: 0 4px;">|</span>
                                     <a href="{{ route('books.edit', $book) }}" class="action-link">Edit</a>
-                                    <span style="color: #CBD5E0; margin: 0 4px;">|</span>
-                                    <form action="{{ route('books.destroy', $book) }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('DELETE')
+                                    
+                                    <!-- Penerapan Policy pada Tombol Hapus[cite: 11] -->
+                                    @can('delete', $book)
+                                        <span style="color: #CBD5E0; margin: 0 4px;">|</span>
+                                        <form action="{{ route('books.destroy', $book) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
 
-                                        <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin menghapus buku ini?')">
-                                            Hapus
-                                        </button>
-                                    </form>
+                                            <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin menghapus buku ini?')">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
